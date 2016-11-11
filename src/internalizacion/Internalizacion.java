@@ -11,33 +11,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
- /*
-    Formato del fichero
-    2
-    EN
-    ES
-    Inglés 
-    Español
-    11
-    Aceptar
-    Cancelar
-    ....
-    11
-    Ok 
-    Cancel
-    3
-    img/presidente.jpg
-    img/crack.jpg
-    img/hola.jpg
-    3
-    .....
-    img/english.jpg
-    Formato: cadena[idioma][pos]
-    */
-
 /**
  *
- * @author Juanca
+ * @author Juanca Poner la etiqueta del idioma al lado de la bandera
  */
 public class Internalizacion {
     
@@ -112,6 +88,8 @@ public class Internalizacion {
         idiomas = new ArrayList<>();
         imagenes = new ArrayList<>();
         leerFichero("idiomas.txt");
+        Ventana ventana = new Ventana();
+        ventana.setVisible(true);
     }
     
 }
