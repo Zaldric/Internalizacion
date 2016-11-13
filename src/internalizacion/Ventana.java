@@ -16,6 +16,7 @@ public class Ventana extends javax.swing.JFrame {
     static private String datos[][];
     static private int idioma;
     static private int totalIdiomas;
+    static private int totalImagenes;
     private static ArrayList<String> idiomas;
     private static ArrayList<String> imagenes;
     
@@ -25,12 +26,14 @@ public class Ventana extends javax.swing.JFrame {
      * @param datos
      * @param idiomas
      * @param imagenes
+     * @param totalImagenes
      */
-    public Ventana(String datos[][], ArrayList<String> idiomas, ArrayList<String> imagenes) {
+    public Ventana(String datos[][], ArrayList<String> idiomas, ArrayList<String> imagenes, int totalImagenes) {
         super("Práctica 8 - Internacionalizacion");
         Ventana.datos = datos;
         Ventana.idiomas = idiomas;
         Ventana.imagenes = imagenes;
+        Ventana.totalImagenes = totalImagenes;
         totalIdiomas = idiomas.size() / 2;
         idioma = 0;
         initComponents();
@@ -40,7 +43,7 @@ public class Ventana extends javax.swing.JFrame {
         jButton4.setText(datos[idioma][3]);
         jButton5.setText(idiomas.get(idioma + totalIdiomas));
         jLabel1.setText("(" + idiomas.get(idioma) + ")");
-        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(0)));
+        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(idioma * totalImagenes)));
         
     }
     
@@ -52,7 +55,7 @@ public class Ventana extends javax.swing.JFrame {
         jButton4.setText(datos[idioma][3]);
         jButton5.setText(idiomas.get(idioma + totalIdiomas)); 
         jLabel1.setText("(" + idiomas.get(idioma) + ")");
-        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(3)));
+        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(idioma * totalImagenes)));
     }
     
    
@@ -174,7 +177,7 @@ public class Ventana extends javax.swing.JFrame {
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Ventana(datos, idiomas, imagenes).setVisible(true);
+            new Ventana(datos, idiomas, imagenes, totalImagenes).setVisible(true);
             //jButton1.setName(datos[idioma][0]);
             
         });

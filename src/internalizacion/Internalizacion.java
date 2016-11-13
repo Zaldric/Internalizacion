@@ -88,7 +88,7 @@ public class Internalizacion {
         idiomas = new ArrayList<>();
         imagenes = new ArrayList<>();
         leerFichero("idiomas.txt");
-        Ventana ventana = new Ventana(datos, idiomas, imagenes);
+        Ventana ventana = new Ventana(datos, idiomas, imagenes, z);
         ventana.setVisible(true);
     }
     
