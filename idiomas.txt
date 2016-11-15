@@ -3,18 +3,20 @@ ES
 EN
 Castellano
 Ingles 
-5
+6
 Modificar
 Buscar
 Eliminar
 Insertar
 Atras
-5
+No encontrado
+6
 Modify
 Search
 Delete
 Insert
 Back
+Not found
 3
 img\\Image1.png
 img/crack.jpg

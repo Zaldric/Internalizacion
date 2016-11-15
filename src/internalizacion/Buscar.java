@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package internalizacion;
-
 import java.util.ArrayList;
 
 /**
@@ -12,28 +11,32 @@ import java.util.ArrayList;
  * @author Juanca
  */
 public class Buscar extends javax.swing.JFrame {
-    
+
     private static String datos[][];
     static int idioma;
     static int totalIdiomas;
+    static private ArrayList<Fruta> inventario;
+    static private Ventana ventana;
 
     /**
      * Creates new form Buscar
-     * @param datos
-     * @param idioma
-     * @param totalIdiomas
+     *
+     * @param ventana
      */
-    public Buscar(String datos[][], int idioma, int totalIdiomas) {
+    public Buscar(Ventana ventana) {
         super("Práctica 8 - Internacionalizacion");
-        Buscar.totalIdiomas = totalIdiomas;
-        Buscar.idioma = idioma;
-        Buscar.datos = datos;
+        Buscar.inventario = ventana.getInventario();
+        Buscar.totalIdiomas = ventana.getTotalIdiomas();
+        Buscar.idioma = ventana.getIdioma();
+        Buscar.datos = ventana.getDatos();
+        Buscar.ventana = ventana;
         initComponents();
         jButton1.setText(datos[idioma][4]);
         jButton2.setText(datos[idioma][1]);
+        //jTextField2.setVisible(false);
     }
-    
-    public void cambiarIdioma(){
+
+    public void cambiarIdioma() {
         idioma = (idioma + 1) % totalIdiomas;
     }
 
@@ -49,10 +52,14 @@ public class Buscar extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextField2 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,28 +69,29 @@ public class Buscar extends javax.swing.JFrame {
         });
 
         jButton2.setText("jButton2");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2))))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -91,11 +99,11 @@ public class Buscar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(68, 68, 68)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
                 .addComponent(jButton1)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -106,8 +114,47 @@ public class Buscar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ventana.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String dato, busqueda = jTextField1.getText();
+        int longitud = busqueda.length();
+        char comprobacion[] = busqueda.toCharArray();
+        System.out.println("Tengo" + comprobacion[0]);
+        boolean valido = true;
+        for (int i = 0; i < longitud; ++i){
+            if(!Character.isDigit(comprobacion[i])) { 
+                System.out.println("Entro");
+                valido = false;
+            }
+        }
+        System.out.println("Entro");
+        if (valido) {
+            int id = Integer.parseInt(busqueda);
+            for (int i = 0; i < inventario.size(); ++i) {
+                if(inventario.get(i).getId() == id) {
+                    System.out.println("Entro");
+                    dato = inventario.get(i).getNombre() + " | " + inventario.get(i).getUnidades() 
+                            + " | " + inventario.get(i).getPrecio() + " | " + inventario.get(i).getUnidades();
+                    jTextField2.setText(dato);
+                    return;
+                }
+            }
+            jTextField2.setText(datos[idioma][5]);
+        } else {
+            jTextField2.setText(datos[idioma][5]);
+        }
+        jTextField2.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        ventana.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -137,16 +184,17 @@ public class Buscar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+ /*
         java.awt.EventQueue.invokeLater(() -> {
-            new Buscar(datos, idioma, totalIdiomas).setVisible(true);
+            new Buscar(ventana).setVisible(true);
         });
+         */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
