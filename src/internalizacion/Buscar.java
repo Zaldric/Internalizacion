@@ -13,17 +13,28 @@ import java.util.ArrayList;
  */
 public class Buscar extends javax.swing.JFrame {
     
-    static private ArrayList<String> datos;
+    private static String datos[][];
     static int idioma;
+    static int totalIdiomas;
 
     /**
      * Creates new form Buscar
      * @param datos
+     * @param idioma
+     * @param totalIdiomas
      */
-    public Buscar(ArrayList<String> datos) {
+    public Buscar(String datos[][], int idioma, int totalIdiomas) {
         super("Práctica 8 - Internacionalizacion");
+        Buscar.totalIdiomas = totalIdiomas;
+        Buscar.idioma = idioma;
         Buscar.datos = datos;
         initComponents();
+        jButton1.setText(datos[idioma][4]);
+        jButton2.setText(datos[idioma][1]);
+    }
+    
+    public void cambiarIdioma(){
+        idioma = (idioma + 1) % totalIdiomas;
     }
 
     /**
@@ -127,7 +138,7 @@ public class Buscar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Buscar(datos).setVisible(true);
+            new Buscar(datos, idioma, totalIdiomas).setVisible(true);
         });
     }
 

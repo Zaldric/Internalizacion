@@ -8,13 +8,13 @@ Modificar
 Buscar
 Eliminar
 Insertar
-Hablar
+Atras
 5
 Modify
 Search
 Delete
 Insert
-Speak
+Back
 3
 img\\Image1.png
 img/crack.jpg
