@@ -123,7 +123,7 @@ public class Internalizacion {
         inventario = new ArrayList<>();
         leerPalabras("idiomas.txt");
         cargarInventario("inventario.txt");
-        Ventana ventana = new Ventana(datos, inventario, idiomas, imagenes, z);
+        Ventana ventana = new Ventana(datos, inventario, idiomas, imagenes, 0);
         ventana.setVisible(true);
         
     }

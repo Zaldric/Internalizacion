@@ -2,21 +2,31 @@
 ES
 EN
 Castellano
-Ingles 
-6
+English
+11
 Modificar
 Buscar
 Eliminar
 Insertar
 Atras
+ID
+Nombre
+Unidades
+Precio
 No encontrado
-6
+ID no valido
+11
 Modify
 Search
 Delete
 Insert
 Back
+ID
+Name
+Units
+Price
 Not found
+Invalid ID
 3
 img\\Image1.png
 img/crack.jpg

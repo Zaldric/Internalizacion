@@ -14,13 +14,13 @@ import java.util.ArrayList;
  */
 public class Ventana extends javax.swing.JFrame {
     
-    static public String datos[][];
-    static public int idioma;
-    static public int totalIdiomas;
-    static private int totalImagenes;
-    static private ArrayList<String> idiomas;
-    static public ArrayList<Fruta> inventario;
-    static private ArrayList<String> imagenes;
+    private final String datos[][];
+    private int idioma;
+    private final int totalIdiomas;
+    private final int totalImagenes;
+    private final ArrayList<String> idiomas;
+    private final ArrayList<Fruta> inventario;
+    private final ArrayList<String> imagenes;
     
 
     /**
@@ -29,17 +29,17 @@ public class Ventana extends javax.swing.JFrame {
      * @param inventario
      * @param idiomas
      * @param imagenes
-     * @param totalImagenes
+     * @param idioma
      */
-    public Ventana(String datos[][], ArrayList<Fruta> inventario, ArrayList<String> idiomas, ArrayList<String> imagenes, int totalImagenes) {
+    public Ventana(String datos[][], ArrayList<Fruta> inventario, ArrayList<String> idiomas, ArrayList<String> imagenes, int idioma) {
         super("Práctica 8 - Internacionalizacion");
-        Ventana.datos = datos;
-        Ventana.inventario = inventario;
-        Ventana.idiomas = idiomas;
-        Ventana.imagenes = imagenes;
-        Ventana.totalImagenes = totalImagenes;
+        this.datos = datos;
+        this.inventario = inventario;
+        this.idiomas = idiomas;
+        this.imagenes = imagenes;
         totalIdiomas = idiomas.size() / 2;
-        idioma = 0;
+        totalImagenes = imagenes.size() / totalIdiomas;
+        this.idioma = idioma;
         initComponents();
         jButton1.setText(datos[idioma][0]);
         jButton2.setText(datos[idioma][1]);
@@ -50,22 +50,18 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(idioma * totalImagenes)));
         
     }
-    public int getTotalIdiomas() {
-        return totalIdiomas;
-    }
     
-    public ArrayList<Fruta> getInventario() {
-        return inventario;
+   
+    public Ventana(Ventana ventana) {
+        this.datos = ventana.getDatos();
+        this.idioma = ventana.getIdioma();
+        this.totalIdiomas = ventana.getTotalIdiomas();
+        this.inventario = ventana.getInventario();
+        this.idiomas = ventana.getIdiomas();
+        this.imagenes = ventana.getImagenes();
+        this.totalImagenes = ventana.getTotalImagenes();
     }
-    
-    public int getIdioma() {
-        return idioma;
-    }
-    
-    public String[][] getDatos() {
-        return datos;
-    }
-    
+     
     public void cambiarIdioma(){
         idioma = (idioma + 1) % totalIdiomas;
         jButton1.setText(datos[idioma][0]);
@@ -75,6 +71,35 @@ public class Ventana extends javax.swing.JFrame {
         jButton5.setText(idiomas.get(idioma + totalIdiomas)); 
         jLabel1.setText("(" + idiomas.get(idioma) + ")");
         jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(idioma * totalImagenes)));
+    }
+    
+        
+    public int getTotalIdiomas() {
+        return totalIdiomas;
+    }
+    
+    public int getIdioma() {
+        return idioma;
+    }
+    
+    public ArrayList<Fruta> getInventario() {
+        return inventario;
+    }
+    
+    public ArrayList<String> getIdiomas() {
+        return idiomas;
+    }
+    
+    public ArrayList<String> getImagenes() {
+        return imagenes;
+    }
+    
+    public String[][] getDatos() {
+        return datos;
+    }
+    
+    public int getTotalImagenes() {
+        return totalImagenes;
     }
     
    
@@ -96,13 +121,13 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +137,11 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("jButton4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -162,9 +192,9 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5)
-                .addGap(30, 30, 30)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -185,9 +215,9 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
         Buscar buscar = new Buscar(this);
         buscar.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -196,11 +226,19 @@ public class Ventana extends javax.swing.JFrame {
         System.out.println("Prueba" + inventario.get(0));
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //AQUI VUELCO LOS DATOS AL FICHERO
-        System.out.println("ZUBNORMAH");
-    }//GEN-LAST:event_formWindowClosing
+        Buscar buscar = new Buscar(this);
+        buscar.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Buscar buscar = new Buscar(this);
+        buscar.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
