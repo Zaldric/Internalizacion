@@ -91,15 +91,18 @@ public class Internalizacion {
             archivo = new File(fich);
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
-            do {
-                int id = Integer.parseInt(br.readLine());
+            boolean carga = true;
+            String dato;
+            dato = br.readLine();
+            while(dato != null) {
+                int id = Integer.parseInt(dato);
                 String nombre = br.readLine();
                 int cantidad = Integer.parseInt(br.readLine());
                 float precio = Float.parseFloat(br.readLine());
                 Fruta fruta = new Fruta(id, nombre, cantidad, precio);
-                inventario.add(fruta);
-                
-            } while(br.readLine() != null);
+                inventario.add(fruta);  
+                dato = br.readLine();
+            } 
             
         } catch (IOException | NumberFormatException e) {
         } finally {

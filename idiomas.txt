@@ -3,7 +3,7 @@ ES
 EN
 Castellano
 English
-11
+12
 Modificar
 Buscar
 Eliminar
@@ -15,7 +15,8 @@ Unidades
 Precio
 No encontrado
 ID no valido
-11
+Aceptar
+12
 Modify
 Search
 Delete
@@ -27,11 +28,12 @@ Units
 Price
 Not found
 Invalid ID
+Ok
 3
 img\\Image1.png
 img/crack.jpg
-img/hola.jpg
+img\\Image3.png
 3
 img\\Image2.png
 img/crack.jpg
-img/hola.jpg
+img\\Image3.png
