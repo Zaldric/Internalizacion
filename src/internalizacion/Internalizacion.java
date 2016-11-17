@@ -55,18 +55,15 @@ public class Internalizacion {
                 }
                 z = Integer.parseInt(br.readLine());
             }
-            
-            
-            for (int i = 0; i < z; ++i){
+            int contador = 0;
+            for (int i = 0; i < z * x; ++i) {
+                if (contador == z) {
+                    br.readLine();
+                    contador = 0;
+                }
                 texto = br.readLine();
                 imagenes.add(texto);
-            }
-            
-            z = Integer.parseInt(br.readLine());
-            
-            for (int i = 0; i < z; ++i){
-                texto = br.readLine();
-                imagenes.add(texto);
+                ++contador;
             }
             
         } catch (IOException | NumberFormatException e) {

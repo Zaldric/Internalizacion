@@ -18,7 +18,7 @@ public class Buscar extends javax.swing.JFrame {
     private final ArrayList<String> idiomas;
     private final ArrayList<String> imagenes;
     private int pos;
-    private int imagen;
+    private final int imagen;
     private boolean campos;
 
     /**

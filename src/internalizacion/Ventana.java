@@ -27,6 +27,7 @@ public class Ventana extends javax.swing.JFrame {
     private final ArrayList<String> imagenes;
     private int imagen;
     private int error;
+    private int bandera;
     
 
     /**
@@ -47,20 +48,29 @@ public class Ventana extends javax.swing.JFrame {
         totalImagenes = imagenes.size() / totalIdiomas;
         this.idioma = idioma;
         initComponents();
-        imagen = 1;
-        error = 2;
+        calculaDatos();
         jButton1.setText(datos[idioma][0]);
         jButton2.setText(datos[idioma][1]);
         jButton3.setText(datos[idioma][2]);
         jButton4.setText(datos[idioma][3]);
         jButton5.setText(idiomas.get(((idioma + 1) % totalIdiomas) + totalIdiomas));
         jLabel1.setText("(" + idiomas.get(idioma) + ")");
-        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(idioma * totalImagenes)));
+        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(bandera)));
         jLabel3.setText("");
         jLabel3.setIcon(new javax.swing.ImageIcon(imagenes.get(imagen)));
         
     }
     
+    private void calculaDatos() {
+        imagen = 1;
+        bandera = 0;
+        error = 2;
+        for(int i = 0; i < idioma; ++i) {
+            bandera = (idioma == 0) ? (0) : (bandera  + 3);
+            imagen = (idioma == 0) ? (1) : (imagen + 3);
+            error = (idioma == 0) ? (2) : (error + 3);
+        }
+    }
    
     public Ventana(Ventana ventana) {
         this.datos = ventana.getDatos();
@@ -80,7 +90,8 @@ public class Ventana extends javax.swing.JFrame {
         jButton4.setText(datos[idioma][3]);
         jButton5.setText(idiomas.get(((idioma + 1) % totalIdiomas) + totalIdiomas)); 
         jLabel1.setText("(" + idiomas.get(idioma) + ")");
-        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(idioma * totalImagenes)));
+        bandera = (idioma == 0) ? (0) : (bandera  + 3);
+        jLabel2.setIcon(new javax.swing.ImageIcon(imagenes.get(bandera)));
         imagen = (idioma == 0) ? (1) : (imagen + 3);
         error = (idioma == 0) ? (2) : (error + 3);
         jLabel3.setIcon(new javax.swing.ImageIcon(imagenes.get(imagen)));
