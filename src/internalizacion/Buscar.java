@@ -5,7 +5,6 @@
  */
 package internalizacion;
 import java.util.ArrayList;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -19,6 +18,8 @@ public class Buscar extends javax.swing.JFrame {
     private final ArrayList<String> idiomas;
     private final ArrayList<String> imagenes;
     private int pos;
+    private int imagen;
+    private boolean campos;
 
     /**
      * Creates new form Buscar
@@ -26,26 +27,25 @@ public class Buscar extends javax.swing.JFrame {
      * @param ventana
      */
     public Buscar(Ventana ventana) {
-        super("Práctica 8 - Internacionalizacion");
+        super("Práctica 9 - Internacionalizacion");
         this.inventario = ventana.getInventario();
         this.idioma = ventana.getIdioma();
         this.datos = ventana.getDatos();
         this.idiomas = ventana.getIdiomas();
         this.imagenes = ventana.getImagenes();
+        imagen = ventana.getError();
         initComponents();
-        
+        campos = false;
+        bloqueoCampos();
         jButton1.setText(datos[idioma][4]);
         jButton2.setText(datos[idioma][1]);
         jButton3.setText(datos[idioma][2]);
         jButton4.setText(datos[idioma][0]);
         jLabel1.setText(datos[idioma][5]);
-        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel2.setText(datos[idioma][6]);
-        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel3.setText(datos[idioma][7]);
-        jLabel3.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel4.setText(datos[idioma][8]);
-        jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel5.setText("");
         jButton3.setEnabled(false);
         jButton4.setEnabled(false);
     }
@@ -72,6 +72,7 @@ public class Buscar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -116,46 +117,45 @@ public class Buscar extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(174, 174, 174)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(67, 67, 67)
-                                            .addComponent(jLabel2)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(16, 16, 16))))))))
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(0, 28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -177,12 +177,13 @@ public class Buscar extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton3))
                 .addGap(28, 28, 28))
         );
 
@@ -199,8 +200,9 @@ public class Buscar extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        getContentPane().validate();
-        getContentPane().repaint();
+        limpiaCampos();
+        campos = false;
+        bloqueoCampos();
         String busqueda = jTextField1.getText();
         int longitud = busqueda.length();
         char comprobacion[] = busqueda.toCharArray();
@@ -214,8 +216,10 @@ public class Buscar extends javax.swing.JFrame {
             busqueda = busqueda.replaceAll("\\s+","");
             if (busqueda.equalsIgnoreCase("")) {
                 this.setEnabled(false);
-                Error error = new Error(this, 10);
+                Error error = new Error(this, 10, 1);
                 error.setVisible(true);
+                jButton3.setEnabled(false);
+                jButton4.setEnabled(false);
                 return;
             }
             int id = Integer.parseInt(busqueda);
@@ -226,17 +230,23 @@ public class Buscar extends javax.swing.JFrame {
                     jTextField5.setText(String.valueOf(inventario.get(i).getUnidades()));
                     jTextField6.setText(String.valueOf(inventario.get(i).getPrecio()));
                     pos = i;
+                    campos = true;
+                    bloqueoCampos();
                     jButton3.setEnabled(true);
                     jButton4.setEnabled(true);
                     return;
                 }
             }
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
             this.setEnabled(false);
-            Error error = new Error(this, 9);
+            Error error = new Error(this, 9, 1);
             error.setVisible(true);
         } else {
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
             this.setEnabled(false);
-            Error error = new Error(this, 10);
+            Error error = new Error(this, 10, 1);
             error.setVisible(true);
         }    
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -251,28 +261,91 @@ public class Buscar extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         inventario.remove(pos);
+        jLabel5.setText(datos[idioma][14]);
         jButton3.setEnabled(false);
+        jButton4.setEnabled(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void bloqueoCampos() {
+        jTextField3.setEnabled(campos);
+        jTextField4.setEnabled(campos);
+        jTextField5.setEnabled(campos);
+        jTextField6.setEnabled(campos); 
+    }
+    private void limpiaCampos() {
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText(""); 
+        jLabel5.setText("");
+
+    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try {
             int id = Integer.parseInt(jTextField3.getText());
+            if (id != inventario.get(pos).getId()) {
+                if (id <= 0) {
+                    this.setEnabled(false);
+                    Error error = new Error(this, 10, 1);
+                    error.setVisible(true);
+                    return;
+                } else {
+                    boolean encontrado = false;
+                    for (int i = 0; i < inventario.size(); ++i) {
+                        if(id == inventario.get(i).getId()){
+                            encontrado = true;
+                            Error error = new Error(this, 10, 1);
+                            error.setVisible(true);
+                        }
+                    }
+                    if (!encontrado) {
+                        inventario.get(pos).setId(id);
+                    }
+                    return;
+                }
+            }
         } catch(NumberFormatException e) {
-            System.out.println("JAJA SALU2");
+            this.setEnabled(false);
+            Error error = new Error(this, 10, 1);
+            error.setVisible(true);
+            return;
         }
         String nombre = jTextField4.getText();
+        inventario.get(pos).setNombre(nombre);
         try {
             int unidades = Integer.parseInt(jTextField5.getText());
+            if (unidades < 0) {
+                this.setEnabled(false);
+                Error error = new Error(this, 12, 1);
+                error.setVisible(true);
+                return;
+            } else {
+                inventario.get(pos).setUnidades(unidades);
+            }
         } catch(NumberFormatException e) {
-            System.out.println("JAJA SALU2");
+            this.setEnabled(false);
+            Error error = new Error(this, 12, 1);
+            error.setVisible(true);
+            return;
         }
         try {
             float precio = Float.parseFloat(jTextField6.getText());
+            if (precio < 0) {
+                this.setEnabled(false);
+                Error error = new Error(this, 12, 1);
+                error.setVisible(true);
+                return;
+            } else {
+                inventario.get(pos).setPrecio(precio);
+            }
         } catch(NumberFormatException e) {
-            System.out.println("JAJA SALU2");
+            this.setEnabled(false);
+            Error error = new Error(this, 12, 1);
+            error.setVisible(true);
+            return;
         }
-        jButton4.setEnabled(false);
+        jLabel5.setText(datos[idioma][13]);
     }//GEN-LAST:event_jButton4ActionPerformed
    
     public ArrayList<String> getImagenes() {
@@ -289,6 +362,10 @@ public class Buscar extends javax.swing.JFrame {
     
     public String[][] getDatos() {
         return datos;
+    }
+    
+    public int getError() {
+        return imagen;
     }
     
     
@@ -318,13 +395,6 @@ public class Buscar extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Buscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
- /*
-        java.awt.EventQueue.invokeLater(() -> {
-            new Buscar(ventana).setVisible(true);
-        });
-         */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -336,6 +406,7 @@ public class Buscar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

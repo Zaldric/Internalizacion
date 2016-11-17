@@ -18,15 +18,19 @@ public class Error extends javax.swing.JFrame {
     private final int totalIdiomas;
     private final int totalImagenes;
     private final int idioma;
+    private final int cod;
+    private int imagen;
     private final Buscar buscar;
+    private final Insertar insertar;
     
 
     /**
      * Creates new form Error
      * @param buscar
      * @param error
+     * @param cod
      */
-    public Error(Buscar buscar, int error) {
+    public Error(Buscar buscar, int error, int cod) {
         super("Mensaje");
         imagenes = buscar.getImagenes();
         datos = buscar.getDatos();
@@ -34,11 +38,32 @@ public class Error extends javax.swing.JFrame {
         totalImagenes = imagenes.size() / totalIdiomas;
         idioma = buscar.getIdioma();
         this.buscar = buscar;
+        this.cod = cod;
+        this.imagen = buscar.getError();
+        insertar = null;
         initComponents();
-        jButton1.setText(datos[idioma][11]); //La formula de la imagen no se yo
-        jLabel1.setIcon(new javax.swing.ImageIcon(imagenes.get((idioma * imagenes.size() / (totalIdiomas)) + 2)));
+        jButton1.setText(datos[idioma][11]); 
+        jLabel1.setIcon(new javax.swing.ImageIcon(imagenes.get(imagen)));
         jLabel2.setText(datos[idioma][error]);
     }
+    
+    public Error(Insertar insertar, int error, int cod) {
+        super("Mensaje");
+        imagenes = insertar.getImagenes();
+        datos = insertar.getDatos();
+        totalIdiomas = insertar.getTotalIdiomas();
+        totalImagenes = imagenes.size() / totalIdiomas;
+        idioma = insertar.getIdioma();
+        this.cod = cod;
+        buscar = null;
+        this.insertar = insertar;
+        initComponents();
+        jButton1.setText(datos[idioma][11]); 
+        jLabel1.setIcon(new javax.swing.ImageIcon(imagenes.get((3 * (idioma + 1)) - 1)));
+        jLabel2.setText(datos[idioma][error]);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,15 +130,25 @@ public class Error extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        buscar.setEnabled(true);
-        this.dispose();
+        if (cod == 1) {
+            buscar.setEnabled(true);
+            this.dispose();
+        } else {
+            insertar.setEnabled(true);
+            this.dispose();
+        }
         
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        buscar.setEnabled(true);
-        this.dispose(); 
+        if (cod == 1) {
+            buscar.setEnabled(true);
+            this.dispose();
+        } else {
+            insertar.setEnabled(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

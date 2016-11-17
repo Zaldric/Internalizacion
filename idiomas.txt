@@ -3,7 +3,7 @@ ES
 EN
 Castellano
 English
-12
+17
 Modificar
 Buscar
 Eliminar
@@ -16,7 +16,12 @@ Precio
 No encontrado
 ID no valido
 Aceptar
-12
+Introduzca un valor positivo
+Fruta modificada
+Fruta eliminada
+Fruta insertada
+Escribe un nombre
+17
 Modify
 Search
 Delete
@@ -29,11 +34,16 @@ Price
 Not found
 Invalid ID
 Ok
+Enter a positive value
+Fruit modified
+Fruit deleted
+Fruit inserted
+Write a name
 3
 img\\Image1.png
-img/crack.jpg
+img\\Image4.png
 img\\Image3.png
 3
 img\\Image2.png
-img/crack.jpg
+img\\Image5.png
 img\\Image3.png
